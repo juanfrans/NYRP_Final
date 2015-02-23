@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map[]>
+<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+
+<Parameters>
+  <Parameter name="center">-74.0444,40.6726,11</Parameter>
+  <Parameter name="format">pbf</Parameter>
+  <Parameter name="json"><![CDATA[{"vector_layers":[{"id":"300_Tree_Grass_Combined","description":"300 Grid Tree Grass Combined","fields":{"Sum_Grass_":"Number","Sum_Tree_A":"Number","GrnSp_Perc":"Number","Tree_Perc":"Number","Grass_Perc":"Number"}}]}]]></Parameter>
+  <Parameter name="maxzoom">16</Parameter>
+  <Parameter name="minzoom">11</Parameter>
+  <Parameter name="name"><![CDATA[300 Green Space]]></Parameter>
+</Parameters>
+
+
+<Layer name="300_Tree_Grass_Combined"
+  buffer-size="32"
+  srs="+proj=lcc +lat_1=40.66666666666666 +lat_2=41.03333333333333 +lat_0=40.16666666666666 +lon_0=-74 +x_0=300000 +y_0=0 +datum=NAD83 +units=us-ft +no_defs">
+    
+    <Datasource>
+       <Parameter name="file"><![CDATA[/Volumes/SIDL_Current/02_SIDL PROJECTS/1406_NYRP/02_GIS/01_Shapefiles/02_Tree_Coverage/300_Tree_Grass_Combined.shp]]></Parameter>
+       <Parameter name="type"><![CDATA[shape]]></Parameter>
+    </Datasource>
+  </Layer>
+
+</Map>

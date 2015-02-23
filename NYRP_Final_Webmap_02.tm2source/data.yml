@@ -1,0 +1,30 @@
+_prefs: 
+  disabled: []
+  inspector: false
+  mapid: jfs2118.07e829aa
+  rev: s-7475f164
+  saveCenter: true
+attribution: ''
+center: 
+  - -74.0444
+  - 40.6726
+  - 11
+description: ''
+Layer: 
+  - id: 300_Tree_Grass_Combined
+    Datasource: 
+      file: /Volumes/SIDL_Current/02_SIDL PROJECTS/1406_NYRP/02_GIS/01_Shapefiles/02_Tree_Coverage/300_Tree_Grass_Combined.shp
+      type: shape
+    description: 300 Grid Tree Grass Combined
+    fields: 
+      Grass_Perc: Number
+      GrnSp_Perc: Number
+      Sum_Grass_: Number
+      Sum_Tree_A: Number
+      Tree_Perc: Number
+    properties: 
+      "buffer-size": 32
+    srs: +proj=lcc +lat_1=40.66666666666666 +lat_2=41.03333333333333 +lat_0=40.16666666666666 +lon_0=-74 +x_0=300000 +y_0=0 +datum=NAD83 +units=us-ft +no_defs
+maxzoom: 16
+minzoom: 11
+name: 300 Green Space

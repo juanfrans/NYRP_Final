@@ -1,0 +1,25 @@
+_prefs: 
+  mapid: jfs2118.ea233080
+  saveCenter: true
+_properties: {}
+attribution: ''
+bounds: 
+  - -180
+  - -85.0511
+  - 180
+  - 85.0511
+center: 
+  - -74.0156
+  - 40.7258
+  - 12
+description: ''
+format: "png8:m=h"
+interactivity_layer: ''
+layers: null
+maxzoom: 16
+minzoom: 11
+name: Green Coverage
+source: "mapbox:///jfs2118.9b4a094a"
+styles: 
+  - style.mss
+template: ''

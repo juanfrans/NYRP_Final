@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE Map[]>
+<Map srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+
+<Parameters>
+  <Parameter name="bounds">-180,-85.0511,180,85.0511</Parameter>
+  <Parameter name="center">-74.0156,40.7258,12</Parameter>
+  <Parameter name="format">png8:m=h</Parameter>
+  <Parameter name="maxzoom">16</Parameter>
+  <Parameter name="minzoom">11</Parameter>
+  <Parameter name="name"><![CDATA[Green Coverage]]></Parameter>
+  <Parameter name="source"><![CDATA[mapbox:///jfs2118.9b4a094a]]></Parameter>
+</Parameters>
+
+
+<Style name="500_Tree_Grass_Combined" filter-mode="first">
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
+    <Filter>([GrnPerc] &gt; 0.75)</Filter>
+    <MarkersSymbolizer width="2.5" fill-opacity="1" stroke-width="0" allow-overlap="true" fill="rgba(218, 255, 144, 0.81)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <Filter>([GrnPerc] &gt; 0.75)</Filter>
+    <MarkersSymbolizer width="5" fill-opacity="1" stroke-width="0" allow-overlap="true" fill="rgba(218, 255, 144, 0.81)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <Filter>([GrnPerc] &gt; 0.75)</Filter>
+    <MarkersSymbolizer width="20" fill-opacity="1" stroke-width="0" allow-overlap="true" fill="rgba(218, 255, 144, 0.81)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([GrnPerc] &gt; 0.75)</Filter>
+    <MarkersSymbolizer width="10" fill-opacity="1" stroke-width="0" allow-overlap="true" fill="rgba(218, 255, 144, 0.81)" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>400000</MinScaleDenominator>
+    <Filter>([GrnPerc] &gt; 0.75)</Filter>
+    <MarkersSymbolizer fill-opacity="1" stroke-width="0" width="3" allow-overlap="true" fill="rgba(218, 255, 144, 0.81)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
+    <Filter>([GrnPerc] &gt; 0.5)</Filter>
+    <MarkersSymbolizer width="1.5" fill-opacity="1" stroke-width="0" allow-overlap="true" fill="rgba(218, 255, 144, 0.81)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <Filter>([GrnPerc] &gt; 0.5)</Filter>
+    <MarkersSymbolizer width="4" fill-opacity="1" stroke-width="0" allow-overlap="true" fill="rgba(218, 255, 144, 0.81)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <Filter>([GrnPerc] &gt; 0.5)</Filter>
+    <MarkersSymbolizer width="15" fill-opacity="1" stroke-width="0" allow-overlap="true" fill="rgba(218, 255, 144, 0.81)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([GrnPerc] &gt; 0.5)</Filter>
+    <MarkersSymbolizer width="7.5" fill-opacity="1" stroke-width="0" allow-overlap="true" fill="rgba(218, 255, 144, 0.81)" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>400000</MinScaleDenominator>
+    <Filter>([GrnPerc] &gt; 0.5)</Filter>
+    <MarkersSymbolizer fill-opacity="1" stroke-width="0" width="3" allow-overlap="true" fill="rgba(218, 255, 144, 0.81)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
+    <Filter>([GrnPerc] &gt;= 0.25)</Filter>
+    <MarkersSymbolizer width="1" fill-opacity="1" stroke-width="0" allow-overlap="true" fill="rgba(218, 255, 144, 0.81)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <Filter>([GrnPerc] &gt;= 0.25)</Filter>
+    <MarkersSymbolizer width="2" fill-opacity="1" stroke-width="0" allow-overlap="true" fill="rgba(218, 255, 144, 0.81)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <Filter>([GrnPerc] &gt;= 0.25)</Filter>
+    <MarkersSymbolizer width="10" fill-opacity="1" stroke-width="0" allow-overlap="true" fill="rgba(218, 255, 144, 0.81)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([GrnPerc] &gt;= 0.25)</Filter>
+    <MarkersSymbolizer width="5" fill-opacity="1" stroke-width="0" allow-overlap="true" fill="rgba(218, 255, 144, 0.81)" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>400000</MinScaleDenominator>
+    <Filter>([GrnPerc] &gt;= 0.25)</Filter>
+    <MarkersSymbolizer fill-opacity="1" stroke-width="0" width="3" allow-overlap="true" fill="rgba(218, 255, 144, 0.81)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>400000</MaxScaleDenominator>
+    <MinScaleDenominator>200000</MinScaleDenominator>
+    <Filter>([GrnPerc] &lt; 0.25)</Filter>
+    <MarkersSymbolizer width="0.5" fill-opacity="1" stroke-width="0" allow-overlap="true" fill="rgba(218, 255, 144, 0.81)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>200000</MaxScaleDenominator>
+    <MinScaleDenominator>100000</MinScaleDenominator>
+    <Filter>([GrnPerc] &lt; 0.25)</Filter>
+    <MarkersSymbolizer width="1" fill-opacity="1" stroke-width="0" allow-overlap="true" fill="rgba(218, 255, 144, 0.81)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>50000</MaxScaleDenominator>
+    <Filter>([GrnPerc] &lt; 0.25)</Filter>
+    <MarkersSymbolizer width="4" fill-opacity="1" stroke-width="0" allow-overlap="true" fill="rgba(218, 255, 144, 0.81)" />
+  </Rule>
+  <Rule>
+    <MaxScaleDenominator>100000</MaxScaleDenominator>
+    <MinScaleDenominator>50000</MinScaleDenominator>
+    <Filter>([GrnPerc] &lt; 0.25)</Filter>
+    <MarkersSymbolizer width="1.5" fill-opacity="1" stroke-width="0" allow-overlap="true" fill="rgba(218, 255, 144, 0.81)" />
+  </Rule>
+  <Rule>
+    <MinScaleDenominator>400000</MinScaleDenominator>
+    <Filter>([GrnPerc] &lt; 0.25)</Filter>
+    <MarkersSymbolizer fill-opacity="1" stroke-width="0" width="3" allow-overlap="true" fill="rgba(218, 255, 144, 0.81)" />
+  </Rule>
+  <Rule>
+    <MarkersSymbolizer fill-opacity="1" stroke-width="0" width="3" allow-overlap="true" fill="rgba(218, 255, 144, 0.81)" />
+  </Rule>
+</Style>
+<Layer name="500_Tree_Grass_Combined"
+  srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over">
+    <StyleName>500_Tree_Grass_Combined</StyleName>  </Layer>
+
+</Map>
