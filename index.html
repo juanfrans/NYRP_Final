@@ -1,122 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset=utf-8 />
-<title>NYRP NEIGHBORHOOD INDICES</title>
-<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-<script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
-<link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
-<style>
-  body { margin:0; padding:0; }
-  #map { position:absolute; top:0; bottom:0; width:100%; background: #333333;}
-</style>
+  <meta charset=utf-8 />
+  <title>NYRP NEIGHBORHOOD INDICES</title>
+  <meta name='description' content='A Neighborhood Health and Open Space Measurment Tool by the Spatial Information Design Lab for NYRP'/>
+  <script src="//use.typekit.net/tzg3lni.js"></script>
+  <script>try{Typekit.load();}catch(e){}</script>
+  <script src='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox.js/v2.1.5/mapbox.css' rel='stylesheet' />
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<style>
-.menu-ui {
-  background:#FFFFFF;
-  position:absolute;
-  top:10px;right:10px;
-  z-index:1;
-  border-radius:0px;
-  width:120px;
-  border:1px solid rgba(0,0,0,0.4);
-  }
-  .menu-ui a {
-    font-size:10px;
-    color:#000000;
-    display:block;
-    margin:0;padding:0;
-    padding:10px;
-    text-decoration:none;
-    border-bottom:1px solid rgba(0,0,0,0.25);
-    text-align:center;
-    font-family: sans-serif;
-    font-weight: bold;
-    }
-    .menu-ui a:first-child {
-      border-radius:0px 0px 0 0;
-      }
-    .menu-ui a:last-child {
-      border:none;
-      border-radius:0 0 3px 3px;
-      }
-    .menu-ui a:hover {
-      background:#CCCCCC;
-      color:#404040;
-      }
-    .menu-ui a.active {
-      background:#CCCCCC;
-      color:#000000;
-      }
-      .menu-ui a.active:hover {
-        background:#CCCCCC;
-        }
-</style>
-<nav id='menu-ui' class='menu-ui'></nav>
-<div id='map'></div>
-
-<script>
-var southWest = L.latLng(40.45, -74.53),
-    northEast = L.latLng(40.975, -73.48),
-    bounds = L.latLngBounds(southWest, northEast),
-    center = L.latLng(40.712398, -73.967900);
-    /*
-
-      L.tileLayer('http://{s}.tiles.mapbox.com/v3/jfs2118.kda701ka/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> &copy <a href="http://mapbox.com">Mapbox</a> &copy <a href="http://spatialinformationdesignlab.org">Spatial Information Design Lab</a>',
-        maxZoom: 18,
-        minZoom: 12
-      }).addTo(map);
-*/
-
-L.mapbox.accessToken = 'pk.eyJ1IjoiamZzMjExOCIsImEiOiJlMUQzd2YwIn0.WLb3PYDt2z-XttOLFcQlVQ';
-//var map = L.mapbox.map('map', 'jfs2118.kda701ka', {attributionControl: false}).setView(center, 11);
-var map = L.mapbox.map('map', 'jfs2118.NYRP_Background_01', {
-  attributionControl: false,
-  maxBounds: bounds,
-  minZoom: 11,
-  maxZoom: 16
-}).setView(center, 11);
-
-var layers = document.getElementById('menu-ui');
-
-var credits = L.control.attribution().addTo(map);
-credits.addAttribution('&copy <a href="http://mapbox.com">Mapbox</a> &copy <a href="http://spatialinformationdesignlab.org">Spatial Information Design Lab</a>')
-
-function addLayer(layer, name, zIndex) {
-    layer
-        .setZIndex(zIndex)
-        //.addTo(map);
-
-    // Create a simple layer switcher that
-    // toggles layers on and off.
-    var link = document.createElement('a');
-        link.href = '#';
-        link.className = '';
-        link.innerHTML = name;
-
-    link.onclick = function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        if (map.hasLayer(layer)) {
-            map.removeLayer(layer);
-            this.className = '';
-        } else {
-            map.addLayer(layer);
-            this.className = 'active';
-        }
-    };
-
-    layers.appendChild(link);
-}
-
-addLayer(L.mapbox.tileLayer('jfs2118.NYRP_WebMap'), 'GREEN SPACE', 1);
-addLayer(L.mapbox.tileLayer('jfs2118.NYRP_Pollution_500'), 'POLLUTION', 2);
-addLayer(L.mapbox.tileLayer('jfs2118.NYRP_Distance_Open_Space'), 'PROXIMITY TO OPEN SPACE', 3);
-addLayer(L.mapbox.tileLayer('jfs2118.NYRP_Neighborhoods'), 'NEIGHBORHOODS', 3);
-
-</script>
+  <div id="1_intro" class="content_intro">
+    <h1 id="title1">HAVEN PROJECT - METRICS</h1>
+    <h2>Analyzing health and environmental metrics for New York City Neighborhoods. A project by <a href="https://www.nyrp.org/" target="_blank">New York Restoration Project</a> and the <a href="http://spatialinformationdesignlab.org/" target="_blank">Spatial Information Design Lab</a>.</h2>
+    <p class="description" id="intro1">
+      This is a work in progress...<br><br>Through these maps and charts we attempt to analyze and compare different neighborhoods in New York City according to specific health and environmental metrics. This site serves as a tool for the <a href="https://www.nyrp.org/blog/introducing-the-haven-project-what-is-nyrp-doing-in-the-south-bronx/" target="_blank">Haven Project</a>, a collaboration between multiple organizations led by the <a href="https://www.nyrp.org/" target="_blank">New York Restoration Project</a>.
+    </p>
+  </div>
+  <div id="2-stat" class="content_grey">
+    <h1 class="catagory">NYC OVERALL METRICS</h1>
+    <p class="description">
+      The metrics on this first map serve to compare different neighborhoods in New York City. We used three types of measurements:
+    </p>
+    <ul>
+      <li>Environmental, which includes tree and grass coverage, pollution (PM 2.5) levels and walking distance to recreational spaces measuring 6 acres or more.</li>
+      <li>Health, including asthma rates, self-reported exercise, and the presence of diabetes and cardiovascular diseases.</li>
+      <li>Demographics, which includes percentage of the population below the poverty line, percentage of the population younger than 18 and older than 65, and percentage of the population having attained only high-school or less.</li>
+    </ul>
+    <h3 class="chart_name">NYC Neighborhood Metrics Map</h3>
+    <p>
+      <iframe scrolling="no" src="NYC_Map.html" class="map" width="800" height="600" frameborder="0"></iframe>
+    </p>
+    <a name="3_who"></a>
+    <div style="height: 40px; padding:0px; margin:0px;"></div>
+  </div>
 </body>
 </html>
