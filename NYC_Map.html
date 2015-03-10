@@ -19,23 +19,23 @@
 <body>
   <style>
   .menu-ui {
-    background:#CCCCCC;
+    background:#E5E5E5;
     position:absolute;
     top:10px;right:10px;
     z-index:1;
     border-radius:0px;
     width:120px;
-    border:1px solid rgba(0,0,0,0.4);
+    border:0px solid rgba(0,0,0,0.1);
   }
   .menu-ui a {
     font-size:10px;
     font-family: "futura-pt",helvetica, sans-serif;
-    color:#000000;
+    color:#333333;
     display:block;
     margin:0;padding:0;
     padding:10px;
     text-decoration:none;
-    border-bottom:1px solid rgba(0,0,0,0.25);
+    border-bottom:0px solid rgba(0,0,0,0.25);
     text-align:center;
     font-weight: 300;
   }
@@ -48,11 +48,11 @@
   }
   .menu-ui a:hover {
     background:#CCCCCC;
-    color:#404040;
+    color:#333333;
   }
   .menu-ui a.active {
     background:#CCCCCC;
-    color:#000000;
+    color:#333333;
   }
   .menu-ui a.active:hover {
     background:#CCCCCC;
@@ -114,7 +114,14 @@
     addLayer(L.mapbox.tileLayer('jfs2118.NYRP_WebMap'), 'GREEN SPACE', 1);
     addLayer(L.mapbox.tileLayer('jfs2118.NYRP_Pollution_500'), 'POLLUTION', 2);
     addLayer(L.mapbox.tileLayer('jfs2118.NYRP_Distance_Open_Space'), 'PROXIMITY TO OPEN SPACE', 3);
-    addLayer(L.mapbox.tileLayer('jfs2118.NYRP_Neighborhoods'), 'NEIGHBORHOODS', 3);
+    addLayer(L.mapbox.tileLayer('jfs2118.NYRP_Asthma_500'), 'ASTHMA RATE', 4);
+    addLayer(L.mapbox.tileLayer('jfs2118.NYRP_Overweight_500'), 'OVERWEIGHT', 5);
+    addLayer(L.mapbox.tileLayer('jfs2118.NYRP_Exercise_500'), 'EXERCISE LAST MONTH', 6);
+    addLayer(L.mapbox.tileLayer('jfs2118.NYRP_Age_500'), 'VULNERABLE POPULATION', 7);
+    addLayer(L.mapbox.tileLayer('jfs2118.NYRP_Education_500'), 'HIGH SCHOOL OR LESS', 8);
+    addLayer(L.mapbox.tileLayer('jfs2118.NYRP_Poverty_500'), 'BELOW POVERTY LINE', 9);
+
+    addLayer(L.mapbox.tileLayer('jfs2118.NYRP_Neighborhoods'), 'NEIGHBORHOODS', 10);
   </script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 body {
-	background-color: #666666;
+	background-color: #CCCCCC;
 	color: #CCCCCC;
 	font-family: "futura-pt",helvetica, sans-serif;
 	font-size: 16px;
@@ -69,7 +69,7 @@ li.nav_link{
 /****** Content ******/ 
 
 div.content_intro{
-	background-color: #666666;
+	background-color: #FFFFFF;
 	width: 100%;
 	height: 100%;
 	margin: 0;
@@ -85,13 +85,13 @@ div.content_grey{
 	width: 100%;
 	height: 100%;
 	margin:0;
-	background-color: #666666;
+	background-color: #FFFFFF;
 }
 h1{
 	font-family: "futura-pt", helvetica, sans-serif;
 	font-size: 40px;
 	font-style: normal;
-	color: #CCCCCC;
+	color: #333333;
 	font-weight: 400;
 	text-align: center;
 	margin-left:auto;
@@ -106,7 +106,7 @@ h2{
 	width: 650px;
 	font-size: 15px;
 	font-style: normal;
-	color: #8C8C8C;
+	color: #333333;
 	font-weight: 300;
 	font-style: italic;
 	text-align: center;
@@ -124,7 +124,7 @@ h3{
 	font-style: normal;
 	font-size: 16px;
 	font-weight: 400;
-	color: #CCCCCC;
+	color: #333333;
 	text-align: center;
 	margin-left:auto;
 	margin-right:auto;
@@ -138,7 +138,7 @@ h4{
 	font-style: normal;
 	font-size: 11px;
 	font-weight: 100;
-	color: #CCCCCC;
+	color: #333333;
 	text-align: center;
 	margin-left:auto;
 	margin-right:auto;
@@ -151,7 +151,7 @@ ul{
 	text-align: justify;
 	font-family: "futura-pt",helvetica, sans-serif;
 	font-style: normal;
-	color: #CCCCCC;
+	color: #333333;
 	font-size: 14px;
 	font-weight: 300;
 	padding: 0px;
@@ -166,7 +166,7 @@ p.description {
 	text-align: justify;
 	font-family: "futura-pt",helvetica, sans-serif;
 	font-style: normal;
-	color: #CCCCCC;
+	color: #333333;
 	font-size: 14px;
 	font-weight: 300;
 	padding: 0px;
