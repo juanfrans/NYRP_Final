@@ -1,5 +1,5 @@
 body {
-	background-color: #CCCCCC;
+	background-color: #FFFFFF;
 	color: #CCCCCC;
 	font-family: "futura-pt",helvetica, sans-serif;
 	font-size: 16px;
@@ -79,7 +79,7 @@ div.content{
 	width: 100%;
 	height: 100%;
 	margin: 0;
-	background-color: #666666;
+	background-color: #FFFFFF;
 }
 div.content_grey{
 	width: 100%;

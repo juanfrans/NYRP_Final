@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<script src="//use.typekit.net/tzg3lni.js"></script>
+	<script>try{Typekit.load();}catch(e){}</script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="p5/p5.js"></script>
+	<style>
+	html, body{
+		margin: 0;
+		padding: 0;
+		background: white;
+	}
+	</style>
+</head>
+<script type="text/javascript">
+
+var WIDTH = 800;
+var HEIGHT = 1000;
+var leftMargin = 0;
+var column = 9;
+var buttonX = 10;
+var buttonY = 25;
+var buttonSpacing = 80;
+var fill1;
+var fill2;
+var spacing = 12;
+var barHeight = 5;
+var startY = 50;
+var initValues = [];
+var targetValues = [];
+var drawValues = [];
+var nycInitValue;
+var nycTargetValue;
+var nycDrawValue;
+var maxLength = 680;
+var startX;
+var startY = 80;
+var startFrame, endFrame;
+var transitionFrames = 120;
+var nycTransitionFrames = 40;
+var framesRemaining = 0;
+var totalPeeps;
+
+function preload(){
+	dataTable = loadTable('data/CD_Summary_Data_No_Park.csv');
+	console.log('done loading data');
+}
+
+function setup(){
+	createCanvas(WIDTH, HEIGHT);
+	colorMode(RGB, 255, 255, 255, 100);
+	fill1 = color(20, 204, 183);
+	fill2 = color(255, 152, 0);
+	textFont("futura-pt");
+	startX = leftMargin + 75;
+
+	// Setup initial values
+	var maxValue = 0;
+	for (var i = 1; i < dataTable.getRowCount()-2; i++) {
+		maxValue = max(maxValue, dataTable.getColumn(column)[i]);
+	};
+	for (var i = 0; i < dataTable.getRowCount()-2; i++) {
+		drawValues[i] = map(dataTable.getColumn(column)[i+1], 0, maxValue, 0, maxLength);
+	}
+	nycDrawValue = map(dataTable.getColumn(column)[dataTable.getRowCount()-1], 0, maxValue, 0, maxLength);
+}
+
+function draw(){
+	background(255);
+
+	//Buttons
+	textSize(10);
+	noFill();
+	stroke(0);
+	strokeWeight(1.5);
+	for (var i = 0; i < 10; i++){
+		ellipse(buttonX+buttonSpacing*i, buttonY, 12, 12);
+	}
+	fill(0);
+	noStroke();
+	ellipse(buttonX+buttonSpacing*(column-9), buttonY, 7, 7);
+	textStyle(NORMAL);
+	for (var i = 0; i < 10; i++){
+		text(dataTable.getColumn(i+9)[0], buttonX+10+buttonSpacing*i, buttonY-10, 50, 50);
+	}
+
+	//Draw graphs
+	if (frameCount > 0) {
+		drawGraph();
+	}
+	framesRemaining = frameCount - startFrame;
+	if (framesRemaining < transitionFrames) {
+		updateValues();
+	}
+	if (framesRemaining < nycTransitionFrames) {
+		updateValuesNYC();
+	}
+	checkButtonHover();
+}
+
+function drawGraph(){
+	noStroke();
+	textSize(10);
+	for (var i = 0; i < drawValues.length; i++) {
+		if (i == 12) {
+			fill(fill2);
+		}
+		else {
+			fill(fill1);
+		}
+		rect(startX, startY+(i)*spacing, drawValues[i], barHeight);
+		textAlign(RIGHT);
+		fill(100);
+		text(dataTable.getColumn(1)[i+1], startX-5, startY+(i)*spacing+5);
+		textAlign(LEFT);
+		if (column == 9 || (column > 10 && column < 14) || (column > 14 && column < 18)){
+			var textValue = (round(dataTable.getColumn(column)[i+1]*100)).toString();
+			text(textValue+"%", startX+drawValues[i] + 5, startY+(i)*spacing+5);
+		}
+		else if (column == 10){
+			var textValue = (round(dataTable.getColumn(column)[i+1])).toString();
+			text(textValue+" sf", startX+drawValues[i] + 5, startY+(i)*spacing+5);
+		}
+		else if (column == 14){
+			var textValue = nfc(dataTable.getColumn(column)[i+1],1);
+			text(textValue, startX+drawValues[i] + 5, startY+(i)*spacing+5);
+		}
+		else{
+			var textValue = nfc(dataTable.getColumn(column)[i+1],1);
+			text(textValue, startX+drawValues[i] + 5, startY+(i)*spacing+5);
+		}
+	}
+	noFill();
+	stroke(230);
+	strokeWeight(1.5);
+	line(startX+nycDrawValue, startY-10, startX+nycDrawValue, 790);
+	noStroke();
+	fill(150);
+	textAlign(LEFT);
+	text("New York City Average:", startX+nycDrawValue, startY - 15);
+	if (column == 9 || (column > 10 && column < 14) || (column > 14 && column < 18)){
+		var textValue = (round(dataTable.getColumn(column)[dataTable.getRowCount()-1]*100)).toString();
+		text(textValue+"%", startX+nycDrawValue+97, startY - 15);
+	}
+	else if (column == 10){
+		var textValue = (round(dataTable.getColumn(column)[dataTable.getRowCount()-1])).toString();
+		text(textValue+" sf", startX+nycDrawValue+97, startY - 15);
+	}
+	else if (column == 14){
+		var textValue = nfc(dataTable.getColumn(column)[dataTable.getRowCount()-1],1);
+		text(textValue, startX+nycDrawValue+97, startY - 15);
+	}
+	else{
+		var textValue = nfc(dataTable.getColumn(column)[dataTable.getRowCount()-1],1);
+		text(textValue, startX+nycDrawValue+97, startY - 15);
+	}
+}
+
+function updateValues(){
+	for (var i = 0; i < drawValues.length; i++) {
+		drawValues[i] = lerp(initValues[i], targetValues[i], (framesRemaining/transitionFrames));
+	}
+}
+
+function updateValuesNYC(){
+	nycDrawValue = lerp(nycInitValue, nycTargetValue, (framesRemaining/nycTransitionFrames));
+}
+
+function recalculateValues(){
+	initValues = drawValues;
+	nycInitValue = nycDrawValue;
+	var maxValue = 0;
+	for (var i = 1; i < dataTable.getRowCount()-1; i++) {
+		maxValue = max(maxValue, dataTable.getColumn(column)[i]);
+	};
+	for (var i = 0; i < dataTable.getRowCount()-1; i++) {
+		targetValues[i] = map(dataTable.getColumn(column)[i+1], 0, maxValue, 0, maxLength);
+	}
+	nycTargetValue = map(dataTable.getColumn(column)[dataTable.getRowCount()-1], 0, maxValue, 0, maxLength);
+}
+
+function mousePressed(){	
+	if (mouseX > buttonX-6 && mouseX < buttonX+6 && mouseY > buttonY-6 && mouseY < buttonY+6){
+		column = 9;
+		recalculateValues();
+		startFrame = frameCount;
+	}
+	if (mouseX > buttonX+buttonSpacing-6 && mouseX < buttonX+buttonSpacing+6 && mouseY > buttonY-6 && mouseY < buttonY+6){
+		column = 10;
+		recalculateValues();
+		startFrame = frameCount;
+	}
+	if (mouseX > buttonX+buttonSpacing*2-6 && mouseX < buttonX+buttonSpacing*2+6 && mouseY > buttonY-6 && mouseY < buttonY+6){
+		column = 11;
+		recalculateValues();
+		startFrame = frameCount;
+	}
+	if (mouseX > buttonX+buttonSpacing*3-6 && mouseX < buttonX+buttonSpacing*3+6 && mouseY > buttonY-6 && mouseY < buttonY+6){
+		column = 12;
+		recalculateValues();
+		startFrame = frameCount;	
+	}
+	if (mouseX > buttonX+buttonSpacing*4-6 && mouseX < buttonX+buttonSpacing*4+6 && mouseY > buttonY-6 && mouseY < buttonY+6){
+		column = 13;
+		recalculateValues();
+		startFrame = frameCount;
+	}
+	if (mouseX > buttonX+buttonSpacing*5-6 && mouseX < buttonX+buttonSpacing*5+6 && mouseY > buttonY-6 && mouseY < buttonY+6){
+		column = 14;	
+		recalculateValues();
+		startFrame = frameCount;
+	}
+	if (mouseX > buttonX+buttonSpacing*6-6 && mouseX < buttonX+buttonSpacing*6+6 && mouseY > buttonY-6 && mouseY < buttonY+6){
+		column = 15;
+		recalculateValues();
+		startFrame = frameCount;
+	}
+	if (mouseX > buttonX+buttonSpacing*7-6 && mouseX < buttonX+buttonSpacing*7+6 && mouseY > buttonY-6 && mouseY < buttonY+6){
+		column = 16;
+		recalculateValues();
+		startFrame = frameCount;	
+	}
+	if (mouseX > buttonX+buttonSpacing*8-6 && mouseX < buttonX+buttonSpacing*8+6 && mouseY > buttonY-6 && mouseY < buttonY+6){
+		column = 17;
+		recalculateValues();
+		startFrame = frameCount;
+	}
+	if (mouseX > buttonX+buttonSpacing*9-6 && mouseX < buttonX+buttonSpacing*9+6 && mouseY > buttonY-6 && mouseY < buttonY+6){
+		column = 18;	
+		recalculateValues();
+		startFrame = frameCount;
+	}
+}
+
+function checkButtonHover(){
+	if((mouseX > buttonX-6 && mouseX < buttonX+6 && mouseY > buttonY-6 && mouseY < buttonY+6) || (mouseX > buttonX+buttonSpacing-6 && mouseX < buttonX+buttonSpacing+6 && mouseY > buttonY-6 && mouseY < buttonY+6) || (mouseX > buttonX+buttonSpacing*2-6 && mouseX < buttonX+buttonSpacing*2+6 && mouseY > buttonY-6 && mouseY < buttonY+6) || (mouseX > buttonX+buttonSpacing*3-6 && mouseX < buttonX+buttonSpacing*3+6 && mouseY > buttonY-6 && mouseY < buttonY+6) || (mouseX > buttonX+buttonSpacing*4-6 && mouseX < buttonX+buttonSpacing*4+6 && mouseY > buttonY-6 && mouseY < buttonY+6) || (mouseX > buttonX+buttonSpacing*5-6 && mouseX < buttonX+buttonSpacing*5+6 && mouseY > buttonY-6 && mouseY < buttonY+6) || (mouseX > buttonX+buttonSpacing*6-6 && mouseX < buttonX+buttonSpacing*6+6 && mouseY > buttonY-6 && mouseY < buttonY+6) || (mouseX > buttonX+buttonSpacing*7-6 && mouseX < buttonX+buttonSpacing*7+6 && mouseY > buttonY-6 && mouseY < buttonY+6) || (mouseX > buttonX+buttonSpacing*8-6 && mouseX < buttonX+buttonSpacing*8+6 && mouseY > buttonY-6 && mouseY < buttonY+6) || (mouseX > buttonX+buttonSpacing*9-6 && mouseX < buttonX+buttonSpacing*9+6 && mouseY > buttonY-6 && mouseY < buttonY+6)){
+		cursor(HAND);
+	}
+	else{
+		cursor(ARROW);
+	}
+}
+</script>
