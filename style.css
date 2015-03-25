@@ -39,15 +39,17 @@ div.nav_icon{
 	top: 3px;
 }
 div.social_link{
-	position: relative;
+	height: 40px;
 	width: auto;
-	float: right;
-	margin-right: 20%;
 	bottom: 3px;
 	opacity: .75;
 }
+ul.social_link{
+	margin: auto;
+	height: 40px;
+	width: 10%;
+}
 li.social_link{
-	float: right;
 	display: inline-block;
 	padding-left: 10px;
 }
@@ -112,7 +114,7 @@ h2{
 	text-align: center;
 	margin-left:auto;
 	margin-right:auto;
-	margin-bottom: 50px;
+	margin-bottom: 20px;
 	margin-top: 3px;
 	padding-top: 0px;
 	padding-bottom: 0px;
