@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<script src="//use.typekit.net/tzg3lni.js"></script>
+	<script>try{Typekit.load();}catch(e){}</script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="p5/p5.js"></script>
+	<style>
+	html, body{
+		margin: 0;
+		padding: 0;
+		background: white;
+	}
+	</style>
+</head>
+<script type="text/javascript">
+
+var WIDTH = 700;
+var HEIGHT = 1000;
+var leftMargin = 0;
+var connector = true;
+var buttonX = 10;
+var buttonY = 25;
+var buttonSpacing = 100;
+var fill1;
+var fill2;
+var spacing = 35;
+var barHeight = 25;
+var baselineValues = [];
+var ConnectorValues = [];
+var ConnectorInitValue = [];
+var ConnectorTargetValue = [];
+var ConnectorDrawValue = [];
+var maxLength = 580;
+var maxValues = [25.0, 90.0];
+var startX;
+var startY = 50;
+var startFrame, endFrame;
+var transitionFrames = 120;
+var framesRemaining = 0;
+var totalPeeps;
+var buttonLabels = ['No Connector', 'Connector & Improvements'];
+var chartLabels = ['% of Green Space', '% of Neighborhood With Access to Parks'];
+
+function setup(){
+	createCanvas(WIDTH, HEIGHT);
+	colorMode(RGB, 255, 255, 255, 100);
+	fill1 = color(20, 204, 183);
+	fill2 = color(255, 152, 0);
+	textFont("futura-pt");
+	startX = leftMargin + 90;
+
+	// Setup initial values
+	baselineValues = [20.33, 85.18];
+	ConnectorValues = [21.42, 88.38];
+	ConnectorDrawValue = ConnectorValues;
+}
+
+function draw(){
+	background(255);
+
+	//Buttons
+	textSize(12);
+	noFill();
+	stroke(0);
+	strokeWeight(1.5);
+	for (var i = 0; i < 2; i++){
+		ellipse(buttonX+buttonSpacing*i, buttonY, 12, 12);
+	}
+	fill(0);
+	noStroke();
+	if (connector == true){
+		ellipse(buttonX+buttonSpacing, buttonY, 7, 7);
+	}
+	else{
+		ellipse(buttonX, buttonY, 7, 7);
+	}
+	textStyle(NORMAL);
+	for (var i = 0; i < 2; i++){
+		text(buttonLabels[i], buttonX+10+buttonSpacing*i, buttonY-10, 140, 50);
+	}
+
+	//Draw graphs
+	if (frameCount > 0) {
+		drawGraph();
+	}
+	framesRemaining = frameCount - startFrame;
+	if (framesRemaining < transitionFrames) {
+		updateValues();
+	}
+	checkButtonHover();
+}
+
+function drawGraph(){
+	noStroke();
+	textSize(10);
+	for (var i = 0; i < baselineValues.length; i++) {
+		fill(fill2);
+		rect(startX, startY+(i)*spacing, map(ConnectorDrawValue[i], 0, maxValues[i], 0, maxLength), barHeight);
+		fill(fill1);
+		rect(startX, startY+(i)*spacing, map(baselineValues[i], 0, maxValues[i], 0, maxLength), barHeight);
+		textAlign(RIGHT);
+		fill(100);
+		text(chartLabels[i], startX-5, startY+(i)*spacing-2, 100, 50);
+		textAlign(LEFT);
+		text(round(ConnectorDrawValue[i])+"%", startX+map(ConnectorDrawValue[i], 0, maxValues[i], 0, maxLength) + 5, startY+(i)*spacing+15);
+	}
+}
+
+function updateValues(){
+	for (var i = 0; i < ConnectorDrawValue.length; i++) {
+		ConnectorDrawValue[i] = lerp(ConnectorInitValue[i], ConnectorTargetValue[i], (framesRemaining/transitionFrames));
+	}
+}
+
+function recalculateValues(){
+	ConnectorInitValue = ConnectorDrawValue;
+	if (connector == true){
+		ConnectorTargetValue = [21.42, 88.38];
+	}
+	else{
+		ConnectorTargetValue = baselineValues;
+	}
+}
+
+function mousePressed(){	
+	if (mouseX > buttonX-6 && mouseX < buttonX+6 && mouseY > buttonY-6 && mouseY < buttonY+6){
+		connector = false;
+		recalculateValues();
+		startFrame = frameCount;
+	}
+	if (mouseX > buttonX+buttonSpacing-6 && mouseX < buttonX+buttonSpacing+6 && mouseY > buttonY-6 && mouseY < buttonY+6){
+		connector = true;
+		recalculateValues();
+		startFrame = frameCount;
+	}
+}
+
+function checkButtonHover(){
+	if((mouseX > buttonX-6 && mouseX < buttonX+6 && mouseY > buttonY-6 && mouseY < buttonY+6) || (mouseX > buttonX+buttonSpacing-6 && mouseX < buttonX+buttonSpacing+6 && mouseY > buttonY-6 && mouseY < buttonY+6)){
+		cursor(HAND);
+	}
+	else{
+		cursor(ARROW);
+	}
+}
+</script>
